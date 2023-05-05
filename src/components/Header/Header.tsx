@@ -8,7 +8,7 @@ const Header = () => {
         role="heading"
         className="uppercase font-bold text-3xl"
       >
-        Lemon + Jinja v4
+        Lemon + Jinja v1
       </div>
       <img role='menu' src={image} className="h-[36px]" />
     </div>
