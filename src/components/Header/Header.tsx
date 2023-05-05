@@ -9,7 +9,7 @@ const Header = () => {
       >
         Lemon + Jinja v1
       </div>
-      <img role='menu' src={'../images/icons/apple-icon-180.png'} className="h-[36px]" />
+      <img role='menu' src="../images/icons/apple-icon-180.png" className="h-[36px]" />
     </div>
   );
 };
