@@ -7,7 +7,7 @@ const Header = () => {
         role="heading"
         className="uppercase font-bold text-3xl"
       >
-        Lemon + Jinja
+        Lemon + Jinja v2
       </div>
       <img role='menu' src='https://via.placeholder.com/36' />
     </div>
