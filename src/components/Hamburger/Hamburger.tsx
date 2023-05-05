@@ -1,9 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
+import { Spin as Hamburger } from 'hamburger-react'
 
-const Hamburger = () => {
+const HamburgerMenu = () => {
+    const [isOpen, setOpen] = useState(false)
+
+    const updateOpen = () => {
+        setOpen(!isOpen);
+        console.log(isOpen);
+        
+    }
+
   return (
-    <div>Hamburger</div>
+    <Hamburger toggled={isOpen} toggle={updateOpen} />
   )
 }
 
-export default Hamburger
+export default HamburgerMenu
