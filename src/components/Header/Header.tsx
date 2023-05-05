@@ -9,7 +9,7 @@ const Header = () => {
       >
         Lemon + Jinja
       </div>
-      <img src='https://via.placeholder.com/36' />
+      <img role='menu' src='https://via.placeholder.com/36' />
     </div>
   );
 };
