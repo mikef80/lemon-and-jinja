@@ -19,8 +19,8 @@ test("menu should exist in header", async () => {
   render(<Header />);
 
   // ACT
-  await screen.findByRole("menu");
+  await screen.findByLabelText("menu");
 
   // ASSERT
-  expect(screen.getByRole("menu")).toBeInTheDocument();
+  expect(screen.getByLabelText("menu")).toBeInTheDocument();
 });
