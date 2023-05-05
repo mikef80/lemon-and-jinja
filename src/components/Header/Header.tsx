@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import image from '../images/icons/apple-icon-180.png'
 
 const Header = () => {
   return (
@@ -9,7 +10,7 @@ const Header = () => {
       >
         Lemon + Jinja v4
       </div>
-      <img role='menu' src='https://via.placeholder.com/36' />
+      <img role='menu' src={image} className="h-[36px]" />
     </div>
   );
 };
