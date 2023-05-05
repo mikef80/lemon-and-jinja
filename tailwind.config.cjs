@@ -1,13 +1,13 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    colors: {
-      'ljblue': '#427e81'
-    },
     extend: {
+      colors: {
+        ljblue: "#427e81",
+      },
       fontFamily: {
-        league_spartan: ["league spartan", 'sans-serif']
-      }
+        league_spartan: ["league spartan", "sans-serif"],
+      },
     },
   },
   plugins: [],

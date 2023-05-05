@@ -1,9 +1,10 @@
-import Header from "./Header/Header";
+import Container from "./components/Container/Container";
+import Header from "./components/Header/Header";
 
 function App() {
-  return <div className="flex flex-col justify-center items-center h-[100vh]">
+  return <Container>
     <Header />
-  </div>;
+  </Container>;
 }
 
 export default App;
