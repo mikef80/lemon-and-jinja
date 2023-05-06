@@ -10,7 +10,9 @@ const HamburgerMenu = (props: any) => {
   const dispatch = useDispatch();
 
     const updateOpen = () => {
-        dispatch(toggle());        
+        dispatch(toggle());      
+        console.log(isOpen);
+          
     }
 
   return (
