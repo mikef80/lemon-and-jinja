@@ -5,11 +5,15 @@ import App from "./App";
 import "./index.css";
 import { store } from './app/store'
 import { Provider } from 'react-redux'
+import Home from "./components/Home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {index: true, element: <Home />}
+    ]
   },
 ]);
 
