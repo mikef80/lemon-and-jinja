@@ -5,20 +5,22 @@ import "@testing-library/jest-dom/extend-expect";
 
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
+import { BrowserRouter } from "react-router-dom";
 
 test("should load header", async () => {
   // ARRANGE
   render(
     <Provider store={store}>
       <Header />
-    </Provider>
+    </Provider>,
+    { wrapper: BrowserRouter }
   );
 
   // ACT
-  await screen.findByRole("heading");
+  await screen.findByRole("mainHeading");
 
   // ASSERT
-  expect(screen.getByRole("heading")).toHaveTextContent("Lemon + Jinja");
+  expect(screen.getByRole("mainHeading")).toHaveTextContent("Lemon + Jinja");
 });
 
 test("Hamburger menu should exist in header", async () => {
@@ -26,7 +28,8 @@ test("Hamburger menu should exist in header", async () => {
   render(
     <Provider store={store}>
       <Header />
-    </Provider>
+    </Provider>,
+    { wrapper: BrowserRouter }
   );
 
   // ACT

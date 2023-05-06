@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Settings = () => {
-  return (
-    <div role='settings'>Settings</div>
-  )
-}
+  return <div aria-label="settings" role="settings">Settings</div>;
+};
 
-export default Settings
+export default Settings;

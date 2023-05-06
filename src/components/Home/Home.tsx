@@ -1,10 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
-
 const Home = () => {
-
-  return <div>Home</div>;
+  return (
+    <div role="introduction" className="px-4 py-2">
+      Welcome to the unofficial Lemon and Jinja Companion app.
+    </div>
+  );
 };
 
 export default Home;
