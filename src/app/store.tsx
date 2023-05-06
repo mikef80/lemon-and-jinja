@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import menuStateReducer from '../components/Hamburger/hamburgerSlice'
+import hamburgerStateReducer from '../components/Hamburger/hamburgerSlice'
 
 export const store = configureStore({
   reducer: {
-    menuState: menuStateReducer
+    hamburgerState: hamburgerStateReducer
   },
 });
 

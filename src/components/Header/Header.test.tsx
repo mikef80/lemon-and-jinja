@@ -21,7 +21,7 @@ test("should load header", async () => {
   expect(screen.getByRole("heading")).toHaveTextContent("Lemon + Jinja");
 });
 
-test("menu should exist in header", async () => {
+test("Hamburger menu should exist in header", async () => {
   // ARRANGE
   render(
     <Provider store={store}>

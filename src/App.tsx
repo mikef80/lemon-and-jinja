@@ -1,14 +1,27 @@
 import React from "react";
 import Container from "./components/Container/Container";
 import Header from "./components/Header/Header";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { RootState } from "./app/store";
+import Settings from "./components/Settings/Settings";
+import MenuBar from "./components/MenuBar/MenuBar";
 
 function App() {
-  return <Container>
-    <Header />
-    <Outlet />
-  </Container>;
+  const isOpen = useSelector((state: RootState) => state.hamburgerState.open);
+
+  return (
+    <Container>
+      <Header />
+      {!isOpen && (
+        <>
+          <MenuBar />
+          <Outlet />
+        </>
+      )}
+      {isOpen && <Settings />}
+    </Container>
+  );
 }
 
 export default App;

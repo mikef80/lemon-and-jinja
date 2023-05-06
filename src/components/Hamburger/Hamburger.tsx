@@ -6,7 +6,7 @@ import { RootState } from '../../app/store';
 import { toggle } from './hamburgerSlice';
 
 const HamburgerMenu = (props: any) => {
-  const isOpen = useSelector((state: RootState) => state.menuState.open);
+  const isOpen = useSelector((state: RootState) => state.hamburgerState.open);
   const dispatch = useDispatch();
 
     const updateOpen = () => {

@@ -8,8 +8,8 @@ const initialState: CounterState = {
   open: false,
 }
 
-export const menuStateSlice = createSlice({
-  name: 'menu',
+export const hamburgerStateSlice = createSlice({
+  name: 'hamburger',
   initialState,
     reducers: {
         toggle: (state) => {
@@ -19,6 +19,6 @@ export const menuStateSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { toggle } = menuStateSlice.actions
+export const { toggle } = hamburgerStateSlice.actions
 
-export default menuStateSlice.reducer
+export default hamburgerStateSlice.reducer
