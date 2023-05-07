@@ -16,7 +16,7 @@ const ListItem = () => {
         </div>
       </div>
       <div className="flex justify-center items-center ">
-        <FontAwesomeIcon icon="heart" size='2xl' />
+        <FontAwesomeIcon icon={["fas","heart"]} size='2xl' />
       </div>
     </div>
   );
