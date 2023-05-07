@@ -1,11 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ListItem = () => {
-  return (
-    <div role="list-item" className="flex px-4 pb-4 pt-3 border-b-[1px]">
+const ListItem = (props: {id: number, itemName: string, itemWeight: number, itemFavourite: boolean}) => {
+    const favourite = props.itemFavourite ? "fas" : "far";
+  
+    return (
+    <li role="list-item" className="flex px-4 pb-4 pt-3 border-b-[1px]">
       <div className="pr-2 flex-grow">
-        <div className="">Washing Up Liquid</div>
+        <div className="">{props.itemName}</div>
         <div className="flex">
           <div className="pr-2">
             <FontAwesomeIcon icon="weight-scale" size="xl" />
@@ -16,9 +18,9 @@ const ListItem = () => {
         </div>
       </div>
       <div className="flex justify-center items-center ">
-        <FontAwesomeIcon icon={["far","heart"]} size='2xl' />
+        <FontAwesomeIcon icon={[favourite,"heart"]} size='2xl' />
       </div>
-    </div>
+    </li>
   );
 };
 
