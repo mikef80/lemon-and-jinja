@@ -9,7 +9,6 @@ import { Provider } from "react-redux";
 import { store } from "../../app/store";
 import { BrowserRouter, Outlet } from "react-router-dom";
 
-
 test("should load home screen", async () => {
   // ARRANGE
   render(
@@ -26,5 +25,5 @@ test("should load home screen", async () => {
   /* await screen.findByLabelText("introduction"); */
 
   // ASSERT
-    // expect(screen.getByRole("introduction")).toBeInTheDocument();
+  // expect(screen.getByRole("introduction")).toBeInTheDocument();
 });
