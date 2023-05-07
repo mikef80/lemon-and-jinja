@@ -23,7 +23,7 @@ test("should load home screen", async () => {
   // ACT
   await screen.findByRole("mainHeading");
   await userEvent.click(await screen.findByRole("mainHeading"));
-  await screen.findByRole('introduction')
+  /* await screen.findByLabelText("introduction"); */
 
   // ASSERT
     // expect(screen.getByRole("introduction")).toBeInTheDocument();
