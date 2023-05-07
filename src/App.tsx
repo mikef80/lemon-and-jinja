@@ -7,6 +7,17 @@ import { RootState } from "./app/store";
 import Settings from "./components/Settings/Settings";
 import MenuBar from "./components/MenuBar/MenuBar";
 
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faWeightScale, faHeart, faCheckCircle, faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus)
+
+
+
+
+
+
 function App() {
   const isOpen = useSelector((state: RootState) => state.hamburgerState.open);
 
