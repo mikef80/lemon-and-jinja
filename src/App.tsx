@@ -10,8 +10,9 @@ import MenuBar from "./components/MenuBar/MenuBar";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faWeightScale, faHeart, faCheckCircle, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import {  faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 
-library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus)
+library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus, farHeart)
 
 
 
