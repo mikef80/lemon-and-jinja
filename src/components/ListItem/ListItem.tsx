@@ -14,7 +14,7 @@ const ListItem = (props: { key: number, id: number, itemName: string, itemWeight
                         <FontAwesomeIcon icon="weight-scale" size="xl" />
                     </div>
                     <div className="flex-grow">
-                        <input value={itemWeight} type="number" className="border-2 w-full" />
+                        <input type="number" className="border-2 w-full" />
                     </div>
                 </div>
             </div>
