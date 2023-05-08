@@ -1,20 +1,31 @@
-import React from 'react'
-import ListItem from '../ListItem/ListItem'
-import { RootState } from '../../app/store';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import ListItem from '../ListItem/ListItem';
+
+const items = [
+  {
+    id: 0,
+    itemName: 'item1',
+    itemWeight: 100,
+    itemFavourite: false
+  },
+  {
+    id: 1,
+    itemName: 'item2',
+    itemWeight: 100,
+    itemFavourite: true
+  },
+];
 
 const List = () => {
-  const itemsArray = useSelector((state: RootState) => state.listState.listItems);
-
   return (
     <ul>
-      {itemsArray.map(item => { 
+      {items.map(item => {
         const { id, itemName, itemWeight, itemFavourite } = item;
-        return <ListItem key={id} id={id} itemName={itemName} itemWeight={itemWeight} itemFavourite={itemFavourite} />
-        
+
+        return <ListItem key={id} id={id} itemName={itemName} itemWeight={itemWeight} itemFavourite={itemFavourite} />;
       })}
     </ul>
-  )
-}
+  );
+};
 
-export default List
+export default List;
