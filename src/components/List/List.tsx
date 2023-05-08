@@ -10,7 +10,8 @@ const List = () => {
     <ul>
       {itemsArray.map(item => { 
         const { id, itemName, itemWeight, itemFavourite } = item;
-        return <ListItem id={id} itemName={itemName} itemWeight={itemWeight} itemFavourite={itemFavourite} /> 
+        return <ListItem key={id} id={id} itemName={itemName} itemWeight={itemWeight} itemFavourite={itemFavourite} />
+        
       })}
     </ul>
   )

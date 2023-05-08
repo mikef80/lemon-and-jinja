@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ListItem = (props: {id: number, itemName: string, itemWeight: number, itemFavourite: boolean}) => {
+const ListItem = (props: {key:number, id: number, itemName: string, itemWeight: number, itemFavourite: boolean}) => {
     const favourite = props.itemFavourite ? "fas" : "far";
   
     return (
