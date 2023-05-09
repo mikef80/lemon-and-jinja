@@ -14,7 +14,7 @@ const MenuItem = ({
 
   return (
     <NavLink
-        role={`Link to ${children}`}
+        role='link'
       to={destination}
       className={({ isActive }) =>
         isActive ? activeStyling : inactiveStyling

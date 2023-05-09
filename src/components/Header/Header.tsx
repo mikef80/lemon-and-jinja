@@ -7,7 +7,7 @@ const Header = () => {
     <div className="flex justify-between items-center p-6 border-b-2">
       <Link
       to='/'
-        role="mainHeading"
+        role="link"
         className="uppercase font-bold text-3xl"
       >
         <h1>Lemon + Jinja v2.1</h1>
