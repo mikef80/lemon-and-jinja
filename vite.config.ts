@@ -2,8 +2,24 @@ import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react'
 
-// PWA STUFF
+// PWA STUFF v2
 const manifestForPlugin: Partial<VitePWAOptions> = {
+  registerType: 'prompt',
+  includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+  manifest: {
+  "name": "Lemon + Jinja",
+  "short_name": "Lemon + Jinja",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/"
+},
+}
+
+// PWA STUFF
+/* const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'prompt',
   includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
   manifest: {
@@ -42,7 +58,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     orientation: 'portrait',
     prefer_related_applications: false
   },
-}
+} */
 
 // https://vitejs.dev/config/
 export default defineConfig({
