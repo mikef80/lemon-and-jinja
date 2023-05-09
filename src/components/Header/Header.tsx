@@ -10,7 +10,7 @@ const Header = () => {
         role="link"
         className="uppercase font-bold text-3xl"
       >
-        <h1>Lemon + Jinja v2.4</h1>
+        <h1>Lemon + Jinja</h1>
       </Link>
       <HamburgerMenu label='menu' />
     </div>
