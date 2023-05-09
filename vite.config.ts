@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 // PWA STUFF
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'prompt',
-  
+  includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
   manifest: {
     name: 'Lemon + Jinja',
     short_name: 'Lemon + Jinja',
