@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from '../ListItem/ListItem';
-import ItemInput from '../ItemInput/itemInput';
+import ItemInput from '../ItemInput/ItemInput';
 
 const items = [
   {
