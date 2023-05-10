@@ -17,10 +17,10 @@ test("should load header", async () => {
   );
 
   // ACT
-  await screen.findByRole("mainHeading");
+  await screen.findByRole('heading');
 
   // ASSERT
-  expect(screen.getByRole("mainHeading")).toHaveTextContent("Lemon + Jinja");
+  expect(screen.getByRole("heading")).toHaveTextContent("Lemon + Jinja");
 });
 
 test("Hamburger menu should exist in header", async () => {

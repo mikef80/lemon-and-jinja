@@ -13,17 +13,15 @@ test("should load home screen", async () => {
   // ARRANGE
   render(
     <Provider store={store}>
-      <Header />
-      <Outlet />
+      <Home />
     </Provider>,
     { wrapper: BrowserRouter }
   );
 
   // ACT
-  await screen.findByRole("mainHeading");
-  await userEvent.click(await screen.findByRole("mainHeading"));
-  /* await screen.findByLabelText("introduction"); */
+  
+  await screen.findByRole("main");
 
   // ASSERT
-  // expect(screen.getByRole("introduction")).toBeInTheDocument();
+  expect(screen.getByRole("main")).toBeInTheDocument();
 });
