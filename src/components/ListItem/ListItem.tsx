@@ -5,6 +5,11 @@ const ListItem = (props: { key: number, id: number, itemName: string, itemWeight
     const { id, itemName, itemWeight, itemFavourite } = props;
     const favourite = itemFavourite ? "fas" : "far";
 
+    const updateFavourite = (e) => {
+        console.log(e);
+        
+    }
+
     return (
         <li id={id.toString()} role="list-item" className="flex px-4 pb-4 pt-3 border-b-[1px]">
             <div className="pr-2 flex-grow">
@@ -21,7 +26,7 @@ const ListItem = (props: { key: number, id: number, itemName: string, itemWeight
                 </div>
             </div>
             <div className="flex justify-center items-center ">
-                <FontAwesomeIcon icon={[favourite, "heart"]} size='2xl' />
+                <FontAwesomeIcon icon={[favourite, "heart"]} size='2xl' onClick={updateFavourite} />
             </div>
         </li>
     );
