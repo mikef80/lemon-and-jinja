@@ -1,5 +1,6 @@
 import React from 'react';
 import ListItem from '../ListItem/ListItem';
+import ItemInput from '../ItemInput/itemInput';
 
 const items = [
   {
@@ -18,13 +19,16 @@ const items = [
 
 const List = () => {
   return (
-    <ul>
-      {items.map(item => {
-        const { id, itemName, itemWeight, itemFavourite } = item;
+    <>
+      <ItemInput />
+      <ul>
+        {items.map(item => {
+          const { id, itemName, itemWeight, itemFavourite } = item;
 
-        return <ListItem key={id} id={id} itemName={itemName} itemWeight={itemWeight} itemFavourite={itemFavourite} />;
-      })}
-    </ul>
+          return <ListItem key={id} id={id} itemName={itemName} itemWeight={itemWeight} itemFavourite={itemFavourite} />;
+        })}
+      </ul>
+    </>
   );
 };
 
