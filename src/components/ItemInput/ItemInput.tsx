@@ -15,7 +15,7 @@ const ItemInput = () => {
   return (
     <div>
       <form onSubmit={submitInput} className='w-full h-10'>
-        <input type="text" placeholder='Enter new item...' className='w-full border-x-2 border-b-2 h-full px-4' onChange={updateInput} />
+        <input name='newItemInput' type="text" placeholder='Enter new item...' className='w-full border-x-2 border-b-2 h-full px-4' onChange={updateInput} />
       </form>
     </div>
   );
