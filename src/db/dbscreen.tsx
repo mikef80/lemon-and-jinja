@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { initDB } from "./db";
 
-const dbscreen = () => {
+const Dbscreen = () => {
   const [isDBReady, setISDBReady] = useState(false);
 
   const handleInitDB = async () => {
@@ -21,4 +21,4 @@ const dbscreen = () => {
   );
 };
 
-export default dbscreen;
+export default Dbscreen;
