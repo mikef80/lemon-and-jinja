@@ -49,10 +49,8 @@ export const listStateSlice = createSlice({
       action: PayloadAction<{ id: number; value: number; }>
     ) => {
       const { id, value } = action.payload;
-      console.log(typeof id);
 
       const index = state.items.findIndex((item) => Number(id) === item.id);
-      console.log(index);
 
       state.items[index] = { ...state.items[index], weight: value };
     },

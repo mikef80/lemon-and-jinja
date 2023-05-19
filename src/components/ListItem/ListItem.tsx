@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { updateItemFavourite, updateItem } from "../List/listSlice";
@@ -10,9 +10,11 @@ const ListItem = (props: {
   weight: number;
   favourite: boolean;
 }) => {
+  const [inputWeight, updateInputWeight] = useState();
+
   const { id, name, weight, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
-  console.log(props);
+  
   
 
   const dispatch = useAppDispatch();
@@ -21,6 +23,10 @@ const ListItem = (props: {
   const updateFavourite = (e: any) => {
     dispatch(updateItemFavourite(selected));
   };
+
+  const updateWeight = (e: any) => {
+    updateInputWeight(e.target.value);
+  }
 
   const updateItemWeight = (e: any) => {
     e.preventDefault();
@@ -48,6 +54,9 @@ const ListItem = (props: {
           <div className="flex-grow">
             <form onSubmit={updateItemWeight}>
               <input
+                value={inputWeight}
+                step='any'
+                onChange={updateWeight}
                 name="numberOfItem"
                 type="number"
                 className="border-2 w-full"
