@@ -11,9 +11,9 @@ const List = () => {
       <ItemInput />
       <ul>
         {items.map(item => {
-          const { id, itemName, itemWeight, itemFavourite } = item;
+          const { id, name, weight, favourite } = item;
 
-          return <ListItem key={id} id={id} itemName={itemName} itemWeight={itemWeight} itemFavourite={itemFavourite} />;
+          return <ListItem key={id} id={id} name={name} weight={weight} favourite={favourite} />;
         })}
       </ul>
     </>

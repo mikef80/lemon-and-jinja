@@ -18,9 +18,9 @@ const ItemInput = () => {
 
     const submission = {
       id: count,
-      itemName: input,
-      itemWeight: 0,
-      itemFavourite: false
+      name: input,
+      weight: 0,
+      favourite: false
     };
 
     dispatch(addToList(submission));

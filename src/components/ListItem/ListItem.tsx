@@ -12,6 +12,8 @@ const ListItem = (props: {
 }) => {
   const { id, name, weight, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
+  console.log(props);
+  
 
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.listState.items[id]);

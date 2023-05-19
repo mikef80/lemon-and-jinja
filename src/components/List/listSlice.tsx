@@ -46,7 +46,7 @@ export const listStateSlice = createSlice({
     },
     updateItem: (
       state,
-      action: PayloadAction<{ id: number; value: number }>
+      action: PayloadAction<{ id: number; value: number; }>
     ) => {
       const { id, value } = action.payload;
       console.log(typeof id);
