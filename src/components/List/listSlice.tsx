@@ -34,8 +34,8 @@ export const listStateSlice = createSlice({
       try {
         const { itemName, itemWeight, itemFavourite } = action.payload;
         const result = db.items.add({
-          itemName,
-          itemWeight,
+          name: itemName,
+          weight: itemWeight,
         });
 
         console.log(result);
