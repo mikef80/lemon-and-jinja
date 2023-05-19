@@ -5,9 +5,9 @@ export interface CounterState {
   itemCount: number;
   items: {
     id: number;
-    itemName: string;
-    itemWeight: number;
-    itemFavourite: boolean;
+    name: string;
+    weight: number;
+    favourite: boolean;
   }[];
 }
 
@@ -24,19 +24,17 @@ export const listStateSlice = createSlice({
       state,
       action: PayloadAction<{
         id: number;
-        itemName: string;
-        itemWeight: number;
-        itemFavourite: boolean;
+        name: string;
+        weight: number;
+        favourite: boolean;
       }>
     ) => {
-      state.items.push(action.payload);
+      const { payload } = action;
+
+      state.items.push(payload);
 
       try {
-        const { itemName, itemWeight, itemFavourite } = action.payload;
-        const result = db.items.add({
-          name: itemName,
-          weight: itemWeight,
-        });
+        const result = db.items.add(payload);
 
         console.log(result);
       } catch (error) {

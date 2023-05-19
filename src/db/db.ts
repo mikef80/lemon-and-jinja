@@ -5,6 +5,7 @@ export interface Item {
   id?: number;
   name: string;
   weight: number;
+  favourite: boolean;
 }
 
 export class MySubClassedDexie extends Dexie {
@@ -15,7 +16,7 @@ export class MySubClassedDexie extends Dexie {
   constructor() {
     super('myDatabase');
     this.version(1).stores({
-      items: '++id, name, weight' // Primary key and indexed props
+      items: '++id, name, weight, favourite' // Primary key and indexed props
     });
   }
 }
