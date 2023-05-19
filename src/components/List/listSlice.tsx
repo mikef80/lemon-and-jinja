@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../db/db";
 
 export interface CounterState {
   itemCount: number;
@@ -30,18 +29,6 @@ export const listStateSlice = createSlice({
       }>
     ) => {
       state.items.push(action.payload);
-
-      try {
-        const { itemName, itemWeight, itemFavourite } = action.payload;
-        const result = db.items.add({
-          name: itemName,
-          weight: itemWeight,
-        });
-
-        console.log(result);
-      } catch (error) {
-        console.error(error);
-      }
     },
     incrementCount: (state) => {
       state.itemCount++;
