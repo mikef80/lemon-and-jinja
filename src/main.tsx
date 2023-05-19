@@ -7,7 +7,6 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import Home from "./components/Home/Home";
 import Settings from "./components/Settings/Settings";
-// import List from "./components/List/List";
 const List = lazy(() => import("./components/List/List"));
 import Favourites from "./components/Favourites/Favourites";
 import Loading from "./components/Loading/Loading";
@@ -24,7 +23,11 @@ const router = createBrowserRouter([
             <List />
           </Suspense>)
       },
-      { path: '/favourites', element: <Favourites /> }
+      {
+        path: '/favourites', element: (
+          <Suspense fallback={<Loading />}>
+            <Favourites />
+          </Suspense>) }
     ]
   },
 ]);
