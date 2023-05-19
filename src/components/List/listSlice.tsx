@@ -54,15 +54,15 @@ export const listStateSlice = createSlice({
       const index = state.items.findIndex((item) => Number(id) === item.id);
       console.log(index);
 
-      state.items[index] = { ...state.items[index], itemWeight: value };
+      state.items[index] = { ...state.items[index], weight: value };
     },
     updateItemFavourite: (
       state,
       action: PayloadAction<{
         id: number;
-        itemName: string;
-        itemWeight: number;
-        itemFavourite: boolean;
+        name: string;
+        weight: number;
+        favourite: boolean;
       }>
     ) => {
       const { id } = action.payload;
@@ -71,9 +71,9 @@ export const listStateSlice = createSlice({
 
       const item = state.items[index];
 
-      const favourite = item.itemFavourite;
+      const newFavourite = item.favourite;
 
-      state.items[index] = { ...item, itemFavourite: !favourite };
+      state.items[index] = { ...item, favourite: !newFavourite };
     },
   },
 });

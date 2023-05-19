@@ -6,12 +6,12 @@ import { updateItemFavourite, updateItem } from "../List/listSlice";
 const ListItem = (props: {
   key: number;
   id: number;
-  itemName: string;
-  itemWeight: number;
-  itemFavourite: boolean;
+  name: string;
+  weight: number;
+  favourite: boolean;
 }) => {
-  const { id, itemName, itemWeight, itemFavourite } = props;
-  const favourite = itemFavourite ? "fas" : "far";
+  const { id, name, weight, favourite } = props;
+  const displayFavourite = favourite ? "fas" : "far";
 
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.listState.items[id]);
@@ -38,7 +38,7 @@ const ListItem = (props: {
       className="flex px-4 pb-4 pt-3 border-b-[1px]"
     >
       <div className="pr-2 flex-grow">
-        <div>{itemName}</div>
+        <div>{name}</div>
         <div className="flex">
           <div className="pr-2">
             <FontAwesomeIcon icon="weight-scale" size="xl" />
@@ -57,7 +57,7 @@ const ListItem = (props: {
       <div className="flex justify-center items-center">
         <FontAwesomeIcon
           onClick={updateFavourite}
-          icon={[favourite, "heart"]}
+          icon={[displayFavourite, "heart"]}
           size="2xl"
         />
       </div>
