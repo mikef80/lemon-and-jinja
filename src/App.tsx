@@ -11,6 +11,7 @@ import MenuBar from "./components/MenuBar/MenuBar";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faWeightScale, faHeart, faCheckCircle, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import {  faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
+import { AddFriendForm } from "./db/addItem";
 
 library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus, farHeart)
 
@@ -23,16 +24,8 @@ function App() {
   const isOpen = useSelector((state: RootState) => state.hamburgerState.open);
 
   return (
-    <Container>
-      <Header />
-      {!isOpen && (
-        <>
-          <MenuBar />
-          <Outlet />
-        </>
-      )}
-      {isOpen && <Settings />}
-    </Container>
+    
+    <AddFriendForm defaultWeight={100} />
   );
 }
 
