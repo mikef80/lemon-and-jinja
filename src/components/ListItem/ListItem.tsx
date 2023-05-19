@@ -20,6 +20,10 @@ const ListItem = (props: {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.listState.items[id]);
 
+  const deleteItem = (e: any) => {
+    // DISPATCH DELETE ACTION HERE
+  }
+
   const updateFavourite = (e: any) => {
     dispatch(updateItemFavourite(selected));
   };
@@ -45,7 +49,7 @@ const ListItem = (props: {
       role="list-item"
       className="flex px-4 pb-4 pt-3 border-b-[1px]"
     >
-      <div className="pr-2 flex-grow">
+      <div className="pr-6 flex-grow">
         <div>{name}</div>
         <div className="flex">
           <div className="pr-2">
@@ -65,10 +69,17 @@ const ListItem = (props: {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center pr-6">
         <FontAwesomeIcon
           onClick={updateFavourite}
           icon={[displayFavourite, "heart"]}
+          size="2xl"
+        />
+      </div>
+      <div className="flex justify-center items-center">
+        <FontAwesomeIcon
+          onClick={deleteItem}
+          icon="x"
           size="2xl"
         />
       </div>
