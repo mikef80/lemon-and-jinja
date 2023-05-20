@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { updateItemFavourite, updateItem } from "../List/listSlice";
+import { updateItemFavourite, updateItem, deleteItem } from "../List/listSlice";
 
 const ListItem = (props: {
   key: number;
@@ -14,15 +14,16 @@ const ListItem = (props: {
 
   const { id, name, weight, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
-  
-  
 
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.listState.items[id]);
 
-  const deleteItem = (e: any) => {
+  const deleteItemHandler = (e: any) => {
     // DISPATCH DELETE ACTION HERE
-  }
+    console.log(e.target.parentNode.parentNode.parentNode);
+    
+    // dispatch(deleteItem(e));
+  };
 
   const updateFavourite = (e: any) => {
     dispatch(updateItemFavourite(selected));
@@ -30,7 +31,7 @@ const ListItem = (props: {
 
   const updateWeight = (e: any) => {
     updateInputWeight(e.target.value);
-  }
+  };
 
   const updateItemWeight = (e: any) => {
     e.preventDefault();
@@ -59,7 +60,7 @@ const ListItem = (props: {
             <form onSubmit={updateItemWeight}>
               <input
                 value={inputWeight}
-                step='any'
+                step="any"
                 onChange={updateWeight}
                 name="numberOfItem"
                 type="number"
@@ -77,11 +78,7 @@ const ListItem = (props: {
         />
       </div>
       <div className="flex justify-center items-center">
-        <FontAwesomeIcon
-          onClick={deleteItem}
-          icon="x"
-          size="2xl"
-        />
+        <FontAwesomeIcon onClick={deleteItemHandler} icon="x" size="2xl" />
       </div>
     </li>
   );

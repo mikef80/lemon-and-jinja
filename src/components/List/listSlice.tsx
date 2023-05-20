@@ -73,11 +73,17 @@ export const listStateSlice = createSlice({
 
       state.items[index] = { ...item, favourite: !newFavourite };
     },
+    deleteItem: (state, action: PayloadAction<{
+      id: number;
+    }>) => {
+      console.log(action.payload);
+      
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToList, incrementCount, updateItemFavourite, updateItem } =
+export const { addToList, incrementCount, updateItemFavourite, updateItem, deleteItem } =
   listStateSlice.actions;
 
 export default listStateSlice.reducer;
