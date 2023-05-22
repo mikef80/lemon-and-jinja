@@ -76,8 +76,17 @@ export const listStateSlice = createSlice({
     deleteItem: (state, action: PayloadAction<{
       id: number;
     }>) => {
-      console.log(action.payload);
+      // console.log(action.payload.id);
+      console.log('-----------------------------------');
       
+
+      state.items.forEach(item => {
+        console.log(item.id);
+        console.log(action.payload.id);
+        
+      })
+
+      state.items = state.items.filter(item => item['id'] !== action.payload.id);
     }
   },
 });

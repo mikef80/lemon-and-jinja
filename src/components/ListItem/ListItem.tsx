@@ -20,9 +20,11 @@ const ListItem = (props: {
 
   const deleteItemHandler = (e: any) => {
     // DISPATCH DELETE ACTION HERE
-    console.log(e.target.parentNode.parentNode.parentNode);
-    
-    // dispatch(deleteItem(e));
+    console.log(selected);
+    const id = Number(selected.id);
+    console.log(selected);
+
+    dispatch(deleteItem({ id: id }));
   };
 
   const updateFavourite = (e: any) => {
