@@ -65,8 +65,6 @@ export const listStateSlice = createSlice({
         favourite: boolean;
       }>
     ) => {
-      console.log(action.payload);
-
       const { itemId } = action.payload;
 
       const index = state.items.findIndex((item) => item.itemId === itemId);
@@ -83,17 +81,15 @@ export const listStateSlice = createSlice({
         itemId: number;
       }>
     ) => {
-      // console.log(action.payload.id);
-      console.log("-----------------------------------");
-
-      state.items.forEach((item) => {
-        console.log(item.itemId);
-        console.log(action.payload.itemId);
-      });
+      const deleteId = action.payload.itemId;
+      const deleteArrayId = state.items.findIndex(
+        (item) => (item.itemId = deleteId)
+      );
 
       state.items = state.items.filter(
-        (item) => item.itemId !== action.payload.itemId
+        (item) => item.itemId !== deleteId
       );
+
     },
   },
 });
