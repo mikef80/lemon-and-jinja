@@ -46,16 +46,16 @@ export const listStateSlice = createSlice({
     },
     updateItem: (
       state,
-      action: PayloadAction<{ itemId: number; value: number; }>
+      action: PayloadAction<{ itemId: number; value: number }>
     ) => {
       const { itemId, value } = action.payload;
 
       console.log(action.payload);
       console.log(typeof itemId);
-      
-      
 
-      const index = state.items.findIndex((item) => Number(itemId) === item.itemId);
+      const index = state.items.findIndex(
+        (item) => Number(itemId) === item.itemId
+      );
 
       // state.items[index] = { ...state.items[index], weight: value };
     },
@@ -69,7 +69,7 @@ export const listStateSlice = createSlice({
       }>
     ) => {
       console.log(action.payload);
-      
+
       const { itemId } = action.payload;
 
       const index = state.items.findIndex((item) => item.itemId === itemId);
@@ -80,26 +80,34 @@ export const listStateSlice = createSlice({
 
       state.items[index] = { ...item, favourite: !newFavourite };
     },
-    deleteItem: (state, action: PayloadAction<{
-      itemId: number;
-    }>) => {
+    deleteItem: (
+      state,
+      action: PayloadAction<{
+        itemId: number;
+      }>
+    ) => {
       // console.log(action.payload.id);
-      console.log('-----------------------------------');
-      
+      console.log("-----------------------------------");
 
-      state.items.forEach(item => {
+      state.items.forEach((item) => {
         console.log(item.itemId);
         console.log(action.payload.itemId);
-        
-      })
+      });
 
-      state.items = state.items.filter(item => item.itemId !== action.payload.itemId);
-    }
+      state.items = state.items.filter(
+        (item) => item.itemId !== action.payload.itemId
+      );
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToList, incrementCount, updateItemFavourite, updateItem, deleteItem } =
-  listStateSlice.actions;
+export const {
+  addToList,
+  incrementCount,
+  updateItemFavourite,
+  updateItem,
+  deleteItem,
+} = listStateSlice.actions;
 
 export default listStateSlice.reducer;

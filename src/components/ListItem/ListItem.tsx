@@ -83,6 +83,12 @@ const ListItem = (props: {
         <FontAwesomeIcon onClick={deleteItemHandler} icon="x" size="2xl" />
       </div>
     </li>
+    // <div>
+    //   <p>n: {name}</p>
+    //   <p>w: {weight}</p>
+    //   <p>f: {favourite}</p>
+    //   <p>id: {itemId}</p>
+    // </div>
   );
 };
 
