@@ -2,7 +2,7 @@
 import Dexie, { Table } from 'dexie';
 
 export interface Item {
-  id?: number;
+  itemId?: number;
   name: string;
   weight: number;
   favourite: boolean;
@@ -16,7 +16,7 @@ export class MySubClassedDexie extends Dexie {
   constructor() {
     super('myDatabase');
     this.version(1).stores({
-      items: '++id, name, weight, favourite' // Primary key and indexed props
+      items: '++itemId, name, weight, favourite' // Primary key and indexed props
     });
   }
 }

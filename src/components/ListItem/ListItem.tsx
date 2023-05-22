@@ -5,26 +5,26 @@ import { updateItemFavourite, updateItem, deleteItem } from "../List/listSlice";
 
 const ListItem = (props: {
   key: number;
-  id: number;
+  itemId: number;
   name: string;
   weight: number;
   favourite: boolean;
 }) => {
-  const [inputWeight, updateInputWeight] = useState();
+  const [inputWeight, updateInputWeight] = useState(0);
 
-  const { id, name, weight, favourite } = props;
+  const { itemId, name, weight, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
 
   const dispatch = useAppDispatch();
-  const selected = useAppSelector((state) => state.listState.items[id]);
+  const selected = useAppSelector((state) => state.listState.items.filter(item => item.itemId === itemId)[0]);
 
   const deleteItemHandler = (e: any) => {
     // DISPATCH DELETE ACTION HERE
     console.log(selected);
-    const id = Number(selected.id);
+    const itemId = Number(selected.itemId);
     console.log(selected);
 
-    dispatch(deleteItem({ id: id }));
+    dispatch(deleteItem({ itemId: itemId }));
   };
 
   const updateFavourite = (e: any) => {
@@ -40,7 +40,7 @@ const ListItem = (props: {
     const id =
       e.target[0].parentNode.parentNode.parentNode.parentNode.parentNode.id;
     const payloadObj = {
-      id: id,
+      itemId: id,
       value: e.target[0].value,
     };
     dispatch(updateItem(payloadObj));
@@ -48,7 +48,7 @@ const ListItem = (props: {
 
   return (
     <li
-      id={id.toString()}
+      id={itemId.toString()}
       role="list-item"
       className="flex px-4 pb-4 pt-3 border-b-[1px]"
     >

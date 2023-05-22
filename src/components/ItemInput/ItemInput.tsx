@@ -17,7 +17,7 @@ const ItemInput = () => {
     e.preventDefault();
 
     const submission = {
-      id: count,
+      itemId: count,
       name: input,
       weight: 0,
       favourite: false

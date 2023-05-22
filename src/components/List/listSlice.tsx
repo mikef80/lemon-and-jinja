@@ -4,7 +4,7 @@ import { db } from "../../db/db";
 export interface CounterState {
   itemCount: number;
   items: {
-    id: number;
+    itemId: number;
     name: string;
     weight: number;
     favourite: boolean;
@@ -23,7 +23,7 @@ export const listStateSlice = createSlice({
     addToList: (
       state,
       action: PayloadAction<{
-        id: number;
+        itemId: number;
         name: string;
         weight: number;
         favourite: boolean;
@@ -46,26 +46,33 @@ export const listStateSlice = createSlice({
     },
     updateItem: (
       state,
-      action: PayloadAction<{ id: number; value: number; }>
+      action: PayloadAction<{ itemId: number; value: number; }>
     ) => {
-      const { id, value } = action.payload;
+      const { itemId, value } = action.payload;
 
-      const index = state.items.findIndex((item) => Number(id) === item.id);
+      console.log(action.payload);
+      console.log(typeof itemId);
+      
+      
 
-      state.items[index] = { ...state.items[index], weight: value };
+      const index = state.items.findIndex((item) => Number(itemId) === item.itemId);
+
+      // state.items[index] = { ...state.items[index], weight: value };
     },
     updateItemFavourite: (
       state,
       action: PayloadAction<{
-        id: number;
+        itemId: number;
         name: string;
         weight: number;
         favourite: boolean;
       }>
     ) => {
-      const { id } = action.payload;
+      console.log(action.payload);
+      
+      const { itemId } = action.payload;
 
-      const index = state.items.findIndex((item) => item.id === id);
+      const index = state.items.findIndex((item) => item.itemId === itemId);
 
       const item = state.items[index];
 
@@ -74,19 +81,19 @@ export const listStateSlice = createSlice({
       state.items[index] = { ...item, favourite: !newFavourite };
     },
     deleteItem: (state, action: PayloadAction<{
-      id: number;
+      itemId: number;
     }>) => {
       // console.log(action.payload.id);
       console.log('-----------------------------------');
       
 
       state.items.forEach(item => {
-        console.log(item.id);
-        console.log(action.payload.id);
+        console.log(item.itemId);
+        console.log(action.payload.itemId);
         
       })
 
-      state.items = state.items.filter(item => item['id'] !== action.payload.id);
+      state.items = state.items.filter(item => item.itemId !== action.payload.itemId);
     }
   },
 });
