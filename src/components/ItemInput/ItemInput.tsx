@@ -17,10 +17,10 @@ const ItemInput = () => {
     e.preventDefault();
 
     const submission = {
-      id: count,
-      itemName: input,
-      itemWeight: 0,
-      itemFavourite: false
+      itemId: count,
+      name: input,
+      weight: 0,
+      favourite: false
     };
 
     dispatch(addToList(submission));
