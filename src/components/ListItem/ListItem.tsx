@@ -16,13 +16,12 @@ const ListItem = (props: {
   const displayFavourite = favourite ? "fas" : "far";
 
   const dispatch = useAppDispatch();
-  const selected = useAppSelector((state) => state.listState.items.filter(item => item.itemId === itemId)[0]);
+  const selected = useAppSelector(
+    (state) => state.listState.items.filter((item) => item.itemId === itemId)[0]
+  );
 
   const deleteItemHandler = (e: any) => {
-    // DISPATCH DELETE ACTION HERE
-    console.log(selected);
     const itemId = Number(selected.itemId);
-    console.log(selected);
 
     dispatch(deleteItem({ itemId: itemId }));
   };
@@ -31,18 +30,17 @@ const ListItem = (props: {
     dispatch(updateItemFavourite(selected));
   };
 
-  const updateWeight = (e: any) => {
-    updateInputWeight(e.target.value);
-  };
-
   const updateItemWeight = (e: any) => {
-    e.preventDefault();
-    const id =
-      e.target[0].parentNode.parentNode.parentNode.parentNode.parentNode.id;
+    const currentWeightValue = e.target.value;
+
+    updateInputWeight(currentWeightValue);
+
+    const id = selected.itemId;
     const payloadObj = {
       itemId: id,
-      value: e.target[0].value,
+      value: currentWeightValue,
     };
+
     dispatch(updateItem(payloadObj));
   };
 
@@ -59,16 +57,14 @@ const ListItem = (props: {
             <FontAwesomeIcon icon="weight-scale" size="xl" />
           </div>
           <div className="flex-grow">
-            <form onSubmit={updateItemWeight}>
-              <input
-                value={inputWeight}
-                step="any"
-                onChange={updateWeight}
-                name="numberOfItem"
-                type="number"
-                className="border-2 w-full"
-              />
-            </form>
+            <input
+              value={inputWeight}
+              step="any"
+              onChange={updateItemWeight}
+              name="numberOfItem"
+              type="number"
+              className="border-2 w-full"
+            />
           </div>
         </div>
       </div>

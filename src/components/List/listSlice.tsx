@@ -50,14 +50,11 @@ export const listStateSlice = createSlice({
     ) => {
       const { itemId, value } = action.payload;
 
-      console.log(action.payload);
-      console.log(typeof itemId);
-
       const index = state.items.findIndex(
         (item) => Number(itemId) === item.itemId
       );
 
-      // state.items[index] = { ...state.items[index], weight: value };
+      state.items[index] = { ...state.items[index], weight: Number(value) };
     },
     updateItemFavourite: (
       state,
