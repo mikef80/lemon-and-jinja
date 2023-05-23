@@ -107,9 +107,9 @@ export const listStateSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(deleteFromDB.fulfilled, (state, action) => {
+    builder.addCase(deleteFromDB.fulfilled, (state) => {
       console.log(state);
-      console.log(action);
+      // console.log(action);
     });
   },
 });
