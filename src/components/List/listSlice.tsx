@@ -81,15 +81,11 @@ export const listStateSlice = createSlice({
         itemId: number;
       }>
     ) => {
+      // Delete from State
       const deleteId = action.payload.itemId;
-      const deleteArrayId = state.items.findIndex(
-        (item) => (item.itemId = deleteId)
-      );
+      state.items = state.items.filter((item) => item.itemId !== deleteId);
 
-      state.items = state.items.filter(
-        (item) => item.itemId !== deleteId
-      );
-
+      // Delete from DB
     },
   },
 });
