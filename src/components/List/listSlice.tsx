@@ -1,6 +1,8 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../db/db";
+import { useAppDispatch } from "../../app/hooks";
 
+// Counter State set up
 export interface CounterState {
   itemCount: number;
   items: {
@@ -11,11 +13,24 @@ export interface CounterState {
   }[];
 }
 
+// Initial Counter State
 const initialState: CounterState = {
   itemCount: 0,
   items: [],
 };
 
+// Delete from DB Thunk
+const deleteFromDB = createAsyncThunk(
+  "list/deleteFromIndexedDB",
+  async (itemId: number, thunkAPI) => {
+    const dispatch = useAppDispatch();
+    dispatch(deleteItem({ itemId: itemId }));
+    const response = await db.items.where("itemId").equals(itemId).toArray();
+    console.log(response);
+  }
+);
+
+// Create State Slice
 export const listStateSlice = createSlice({
   name: "list",
   initialState,
@@ -86,7 +101,16 @@ export const listStateSlice = createSlice({
       state.items = state.items.filter((item) => item.itemId !== deleteId);
 
       // Delete from DB
+      // const dbItem = db.items.where("itemId").equals(deleteId);
+      // console.log('dbItem: ' + dbItem);
+      // console.log('dbItem: ' + dbItem.itemId);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(deleteFromDB.fulfilled, (state, action) => {
+      console.log(state);
+      console.log(action);
+    });
   },
 });
 

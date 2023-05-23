@@ -2,6 +2,9 @@ import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { updateItemFavourite, updateItem, deleteItem } from "../List/listSlice";
+import deleteFromDB from '../List/listSlice';
+import listState from '../List/listSlice';
+
 
 const ListItem = (props: {
   key: number;
@@ -23,7 +26,8 @@ const ListItem = (props: {
   const deleteItemHandler = (e: any) => {
     const itemId = Number(selected.itemId);
 
-    dispatch(deleteItem({ itemId: itemId }));
+    // dispatch(deleteItem({ itemId: itemId }));
+    dispatch(deleteFromDB({ itemId: itemId }));
   };
 
   const updateFavourite = (e: any) => {
