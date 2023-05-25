@@ -78,7 +78,6 @@ const ListItem = (props: {
       <div className="flex justify-center items-center">
         <FontAwesomeIcon onClick={deleteItemHandler} icon="x" size="2xl" />
       </div>
-      <div>ddfg</div>
     </li>
     // <div>
     //   <p>n: {name}</p>
