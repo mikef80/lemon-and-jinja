@@ -35,7 +35,6 @@ export const listStateSlice = createSlice({
 
       try {
         const result = db.items.add(payload);
-
         console.log(result);
       } catch (error) {
         console.error(error);
@@ -65,15 +64,18 @@ export const listStateSlice = createSlice({
         favourite: boolean;
       }>
     ) => {
-      const { itemId } = action.payload;
+      const { itemId, favourite } = action.payload;
 
       const index = state.items.findIndex((item) => item.itemId === itemId);
 
-      const item = state.items[index];
+      state.items[index].favourite = !favourite;
 
-      const newFavourite = item.favourite;
+      const result = db.items.where("itemId").equals(itemId).modify(item => item.favourite = !item.favourite);
 
-      state.items[index] = { ...item, favourite: !newFavourite };
+      console.log(result);
+      
+      
+      
     },
     deleteItem: (
       state,
@@ -86,6 +88,14 @@ export const listStateSlice = createSlice({
       state.items = state.items.filter((item) => item.itemId !== deleteId);
 
       // Delete from DB
+      try {
+        const deleted = db.items.where('itemId').equals(deleteId).delete();
+        console.log(deleted);        
+      } catch (error) {
+        console.error(error);
+        
+      }
+      
     },
   },
 });
