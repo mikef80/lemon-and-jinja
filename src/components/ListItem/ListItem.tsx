@@ -1,4 +1,4 @@
-git pull import React, { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { updateItemFavourite, updateItem, deleteItem } from "../List/listSlice";
