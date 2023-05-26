@@ -35,10 +35,11 @@ const ListItem = (props: {
 
     updateInputWeight(currentWeightValue);
 
-    const id = selected.itemId;
+    // const id = selected.itemId;
     const payloadObj = {
-      itemId: id,
-      value: currentWeightValue,
+      /* itemId: id, */
+      ...selected,
+      weight: currentWeightValue,
     };
 
     dispatch(updateItem(payloadObj));

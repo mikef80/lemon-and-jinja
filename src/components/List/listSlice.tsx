@@ -45,15 +45,20 @@ export const listStateSlice = createSlice({
     },
     updateItem: (
       state,
-      action: PayloadAction<{ itemId: number; value: number }>
+      action: PayloadAction<{
+        itemId: number;
+        name: string;
+        weight: number;
+        favourite: boolean;
+      }>
     ) => {
-      const { itemId, value } = action.payload;
+      const { itemId, weight } = action.payload;
 
-      const index = state.items.findIndex(
-        (item) => Number(itemId) === item.itemId
-      );
+      const index = state.items.findIndex((item) => itemId === item.itemId);
 
-      state.items[index] = { ...state.items[index], weight: Number(value) };
+      state.items[index].weight = weight;
+
+      db.items.where("itemId").equals(itemId).modify(item => item.weight = weight);
     },
     updateItemFavourite: (
       state,
@@ -70,12 +75,7 @@ export const listStateSlice = createSlice({
 
       state.items[index].favourite = !favourite;
 
-      const result = db.items.where("itemId").equals(itemId).modify(item => item.favourite = !item.favourite);
-
-      console.log(result);
-      
-      
-      
+      db.items.where("itemId").equals(itemId).modify(item => item.favourite = !favourite);
     },
     deleteItem: (
       state,
