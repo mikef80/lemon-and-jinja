@@ -10,7 +10,7 @@ const ListItem = (props: {
   weight: number;
   favourite: boolean;
 }) => {
-  const [inputWeight, updateInputWeight] = useState(0);
+  const [inputWeight, updateInputWeight] = useState();
 
   const { itemId, name, weight, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
@@ -64,6 +64,7 @@ const ListItem = (props: {
               name="numberOfItem"
               type="number"
               className="border-2 w-full"
+              placeholder='0'
             />
           </div>
         </div>
