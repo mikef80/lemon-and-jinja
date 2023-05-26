@@ -37,7 +37,6 @@ const ListItem = (props: {
 
     // const id = selected.itemId;
     const payloadObj = {
-      /* itemId: id, */
       ...selected,
       weight: currentWeightValue,
     };

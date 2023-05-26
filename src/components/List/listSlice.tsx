@@ -71,7 +71,7 @@ export const listStateSlice = createSlice({
     ) => {
       const { itemId, favourite } = action.payload;
 
-      const index = state.items.findIndex((item) => item.itemId === itemId);
+      const index = state.items.findIndex((item) => itemId === itemId);
 
       state.items[index].favourite = !favourite;
 
