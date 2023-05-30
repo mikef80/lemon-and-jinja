@@ -54,7 +54,7 @@ export const listStateSlice = createSlice({
     ) => {
       const { itemId, weight } = action.payload;
 
-      const index = state.items.findIndex((item) => itemId === item.itemId);
+      const index = state.items.findIndex((item) => item.itemId === itemId);
 
       state.items[index].weight = weight;
 
