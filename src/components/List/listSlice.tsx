@@ -71,9 +71,11 @@ export const listStateSlice = createSlice({
     ) => {
       const { itemId, favourite } = action.payload;
 
-      const index = state.items.findIndex((item) => itemId === itemId);
+      const index = state.items.findIndex((item) => item.itemId === itemId);
 
       state.items[index].favourite = !favourite;
+
+      console.log(!favourite);      
 
       db.items.where("itemId").equals(itemId).modify(item => item.favourite = !favourite);
     },

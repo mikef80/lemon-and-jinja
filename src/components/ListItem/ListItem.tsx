@@ -10,7 +10,7 @@ const ListItem = (props: {
   weight: number;
   favourite: boolean;
 }) => {
-  const [inputWeight, updateInputWeight] = useState();
+  const [inputWeight, updateInputWeight] = useState(0);
 
   const { itemId, name, weight, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
@@ -31,7 +31,7 @@ const ListItem = (props: {
   };
 
   const updateItemWeight = (e: any) => {
-    const currentWeightValue = e.target.value;
+    const currentWeightValue = Number(e.target.value);
 
     updateInputWeight(currentWeightValue);
 
@@ -39,7 +39,7 @@ const ListItem = (props: {
     const payloadObj = {
       ...selected,
       weight: currentWeightValue,
-    };
+    };    
 
     dispatch(updateItem(payloadObj));
   };
