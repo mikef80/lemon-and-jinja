@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../db/db";
 
 export interface CounterState {
@@ -10,6 +10,28 @@ export interface CounterState {
     favourite: boolean;
   }[];
 }
+
+
+// ASYNCTHUNKS
+
+export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPayload: {
+  itemId: number;
+  name: string;
+  weight: number;
+  favourite: boolean;
+}) => {  
+  
+  try {
+      db.items.where("itemId").equals(newDBPayload.itemId).modify(item => {
+      item.weight = newDBPayload.weight;
+      item.favourite = newDBPayload.favourite;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+})
+
+// END ASYNC THUNKS
 
 const initialState: CounterState = {
   itemCount: 0,
@@ -35,7 +57,6 @@ export const listStateSlice = createSlice({
 
       try {
         const result = db.items.add(payload);
-        console.log(result);
       } catch (error) {
         console.error(error);
       }
@@ -52,32 +73,19 @@ export const listStateSlice = createSlice({
         favourite: boolean;
       }>
     ) => {
-      const { itemId, weight } = action.payload;
-
-      const index = state.items.findIndex((item) => item.itemId === itemId);
-
-      state.items[index].weight = weight;
-
-      db.items.where("itemId").equals(itemId).modify(item => item.weight = weight);
-    },
-    updateItemFavourite: (
-      state,
-      action: PayloadAction<{
-        itemId: number;
-        name: string;
-        weight: number;
-        favourite: boolean;
-      }>
-    ) => {
       const { itemId, name, weight, favourite } = action.payload;
-
+      
       const index = state.items.findIndex((item) => item.itemId === itemId);
 
-      state.items[index].favourite = !favourite;
+      const newPayload = {
+        itemId,
+        name,
+        weight: Number(weight),
+        favourite
+      }
 
-      console.log(!favourite);      
+      state.items[index] = newPayload;
 
-      db.items.where("itemId").equals(itemId).modify(item => item.favourite = !favourite);
     },
     deleteItem: (
       state,
@@ -100,13 +108,24 @@ export const listStateSlice = createSlice({
       
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(updateDBItem.fulfilled, (state, action) => {
+        console.log('success!!');
+      })
+    .addCase(updateDBItem.pending, (state, action) => {
+        console.log('pending...');
+    })
+    .addCase(updateDBItem.rejected, (state, action) => {
+        console.log('rejected :(');
+      }) 
+  },
 });
 
 // Action creators are generated for each case reducer function
 export const {
   addToList,
   incrementCount,
-  updateItemFavourite,
   updateItem,
   deleteItem,
 } = listStateSlice.actions;

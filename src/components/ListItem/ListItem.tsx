@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { updateItemFavourite, updateItem, deleteItem } from "../List/listSlice";
+import { updateItem, deleteItem, updateDBItem } from "../List/listSlice";
 
 const ListItem = (props: {
   key: number;
@@ -26,23 +26,18 @@ const ListItem = (props: {
     dispatch(deleteItem({ itemId: itemId }));
   };
 
-  const updateFavourite = (e: any) => {
-    dispatch(updateItemFavourite(selected));
-  };
+  const updateItemDetails = (e: any) => {      
+    const eventID = e.target.id;
 
-  const updateItemWeight = (e: any) => {
-    const currentWeightValue = Number(e.target.value);
-
-    updateInputWeight(currentWeightValue);
-
-    // const id = selected.itemId;
-    const payloadObj = {
-      ...selected,
-      weight: currentWeightValue,
-    };    
-
-    dispatch(updateItem(payloadObj));
-  };
+    if (eventID === 'itemWeightInput') {      
+      updateInputWeight(e.target.value);
+      dispatch(updateItem({ ...selected, weight: Number(e.target.value) }));
+      dispatch(updateDBItem({ ...selected, weight: Number(e.target.value) }));
+    } else {
+      dispatch(updateItem({ ...selected, favourite: !favourite }));
+      dispatch(updateDBItem({ ...selected, favourite: !favourite }));
+    }
+  }
 
   return (
     <li
@@ -58,9 +53,10 @@ const ListItem = (props: {
           </div>
           <div className="flex-grow">
             <input
+              id='itemWeightInput'
               value={inputWeight}
               step="any"
-              onChange={updateItemWeight}
+              onChange={updateItemDetails}
               name="numberOfItem"
               type="number"
               className="border-2 w-full"
@@ -71,7 +67,8 @@ const ListItem = (props: {
       </div>
       <div className="flex justify-center items-center pr-6">
         <FontAwesomeIcon
-          onClick={updateFavourite}
+          id="itemFavToggle"
+          onClick={updateItemDetails}
           icon={[displayFavourite, "heart"]}
           size="2xl"
         />
