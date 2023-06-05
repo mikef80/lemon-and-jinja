@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../db/db";
+import Dexie from "dexie";
 
 export interface CounterState {
   itemCount: number;
@@ -33,10 +34,18 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
 
 // END ASYNC THUNKS
 
+
+// Update initial state to check for exisiting IDB items and populate from there if they exist.
 const initialState: CounterState = {
   itemCount: 0,
   items: [],
 };
+
+const checkIfExists = async () => {
+  const exists = await Dexie.exists('myDatabase');
+  console.log(exists);
+};
+checkIfExists();
 
 export const listStateSlice = createSlice({
   name: "list",
