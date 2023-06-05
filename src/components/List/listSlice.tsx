@@ -3,6 +3,7 @@ import { db } from "../../db/db";
 import Dexie from "dexie";
 
 export interface CounterState {
+  dbLoaded: boolean,
   itemCount: number;
   items: {
     itemId: number;
@@ -32,20 +33,44 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
   }
 })
 
+export const setDBItems = createAsyncThunk('list/setDBItems', async (state: CounterState) => {
+  console.log('set initial DB');
+  const dbExists = await Dexie.exists('myDatabase');
+  console.log(dbExists);
+  // state.items = await db.items.get();
+  db.items.each(item => {
+
+    const { itemId, name, weight, favourite } = item;
+    console.log(item);
+    const writeItem = {
+      itemId,
+      name,
+      weight,
+      favourite,
+    }
+
+    // pick up from here
+    state.items.push(writeItem);
+    
+  })
+})
+
 // END ASYNC THUNKS
 
 
 // Update initial state to check for exisiting IDB items and populate from there if they exist.
 const initialState: CounterState = {
+  dbLoaded: false,
   itemCount: 0,
   items: [],
 };
 
-const checkIfExists = async () => {
+/* const checkIfExists = async () => {
   const exists = await Dexie.exists('myDatabase');
   console.log(exists);
 };
-checkIfExists();
+
+checkIfExists(); */
 
 export const listStateSlice = createSlice({
   name: "list",
@@ -119,14 +144,26 @@ export const listStateSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Update DB Item
       .addCase(updateDBItem.fulfilled, (state, action) => {
         console.log('success!!');
       })
-    .addCase(updateDBItem.pending, (state, action) => {
+      .addCase(updateDBItem.pending, (state, action) => {
         console.log('pending...');
-    })
-    .addCase(updateDBItem.rejected, (state, action) => {
+      })
+      .addCase(updateDBItem.rejected, (state, action) => {
         console.log('rejected :(');
+      }) 
+      // DB Loading
+      .addCase(setDBItems.fulfilled, (state, action) => {
+        state.dbLoaded = true;
+        console.log('DB success!!');
+      })
+      .addCase(setDBItems.pending, (state, action) => {
+        console.log('DB pending...');
+      })
+      .addCase(setDBItems.rejected, (state, action) => {
+        console.log('DB rejected :(');
       }) 
   },
 });
