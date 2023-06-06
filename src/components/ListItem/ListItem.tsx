@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { updateItem, deleteItem, updateDBItem } from "../List/listSlice";
+import { updateItem, deleteItem } from "../List/listSlice";
 
 const ListItem = (props: {
   key: number;
@@ -32,10 +32,8 @@ const ListItem = (props: {
     if (eventID === 'itemWeightInput') {      
       updateInputWeight(e.target.value);
       dispatch(updateItem({ ...selected, weight: Number(e.target.value) }));
-      dispatch(updateDBItem({ ...selected, weight: Number(e.target.value) }));
     } else {
       dispatch(updateItem({ ...selected, favourite: !favourite }));
-      dispatch(updateDBItem({ ...selected, favourite: !favourite }));
     }
   }
 

@@ -2,6 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import hamburgerStateReducer from '../components/Hamburger/hamburgerSlice'
 import listStateReducer from '../components/List/listSlice'
 
+// REDUX-PERSIST
+
+import storage
+
+// END REDUX-PERSIST
+
 export const store = configureStore({
   reducer: {
     hamburgerState: hamburgerStateReducer,

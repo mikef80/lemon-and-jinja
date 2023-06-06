@@ -1,5 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../db/db";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface CounterState {
   itemCount: number;
@@ -10,28 +9,6 @@ export interface CounterState {
     favourite: boolean;
   }[];
 }
-
-
-// ASYNCTHUNKS
-
-export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPayload: {
-  itemId: number;
-  name: string;
-  weight: number;
-  favourite: boolean;
-}) => {  
-  
-  try {
-      db.items.where("itemId").equals(newDBPayload.itemId).modify(item => {
-      item.weight = newDBPayload.weight;
-      item.favourite = newDBPayload.favourite;
-    });
-  } catch (err) {
-    console.log(err);
-  }
-})
-
-// END ASYNC THUNKS
 
 const initialState: CounterState = {
   itemCount: 0,
@@ -54,12 +31,6 @@ export const listStateSlice = createSlice({
       const { payload } = action;
 
       state.items.push(payload);
-
-      try {
-        const result = db.items.add(payload);
-      } catch (error) {
-        console.error(error);
-      }
     },
     incrementCount: (state) => {
       state.itemCount++;
@@ -96,29 +67,8 @@ export const listStateSlice = createSlice({
       // Delete from State
       const deleteId = action.payload.itemId;
       state.items = state.items.filter((item) => item.itemId !== deleteId);
-
-      // Delete from DB
-      try {
-        const deleted = db.items.where('itemId').equals(deleteId).delete();
-        console.log(deleted);        
-      } catch (error) {
-        console.error(error);
-        
-      }
       
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(updateDBItem.fulfilled, (state, action) => {
-        console.log('success!!');
-      })
-    .addCase(updateDBItem.pending, (state, action) => {
-        console.log('pending...');
-    })
-    .addCase(updateDBItem.rejected, (state, action) => {
-        console.log('rejected :(');
-      }) 
   },
 });
 
