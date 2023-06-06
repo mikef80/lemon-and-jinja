@@ -16,6 +16,7 @@ export interface CounterState {
 
 // ASYNCTHUNKS
 
+// Update DB Item
 export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPayload: {
   itemId: number;
   name: string;
@@ -33,12 +34,13 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
   }
 })
 
+// Set redux state items from DB Items 
 export const setDBItems = createAsyncThunk('list/setDBItems', async (state: CounterState) => {
   console.log('set initial DB');
   const dbExists = await Dexie.exists('myDatabase');
   console.log(dbExists);
-  // state.items = await db.items.get();
-  db.items.each(item => {
+  
+  await db.items.each(item => {
 
     const { itemId, name, weight, favourite } = item;
     console.log(item);
@@ -53,6 +55,9 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (state: Coun
     state.items.push(writeItem);
     
   })
+
+  console.log('items written');
+  
 })
 
 // END ASYNC THUNKS
