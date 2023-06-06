@@ -2,6 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../db/db";
 import Dexie from "dexie";
 import { log } from "console";
+import { useSelector } from "react-redux";
 
 export interface CounterState {
   dbLoaded: boolean,
@@ -55,6 +56,7 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
 // Set redux state items from DB Items 
 export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getState }) => {
   const state = getState();
+  
   console.log('set initial DB');
   const dbExists = await Dexie.exists('myDatabase');
 
@@ -64,9 +66,9 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
 
       await db.items.each(item => {
         console.log(item);
-        console.log(state.listState.items);
         
-        state.listState.items = [...state.listState.items, item];
+        const completed = await state.listState.items.push(item);
+        console.log(`completed: ${completed}`);
       });
 
     } else {
