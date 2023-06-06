@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import App from "./App";
 import "./index.css";
-import { store } from './app/store';
+// import { store } from './app/store';
+import { useBearStore } from "./app/store";
 import { Provider } from 'react-redux';
 import Home from "./components/Home/Home";
 import Settings from "./components/Settings/Settings";
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={useBearStore}>
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
