@@ -34,14 +34,53 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
   }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Set redux state items from DB Items 
 export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getState }) => {
   const state = getState();
-  /* console.log('set initial DB');
+  console.log('set initial DB');
   const dbExists = await Dexie.exists('myDatabase');
-  console.log(dbExists);
+
+  try {
+    if (dbExists) {
+      console.log('db exists');
+
+      // await db.items.each(item => console.log(item));
+      await db.items.each(item => state.listState.items.push(item));
+      
+      
+      
+      console.log(state.listState.items);
+      
+      
+
+
+
+
+    } else {
+      console.log("db doesn't exist");
+    }
+  } catch (error) {
+    console.log(error);    
+  }
   
-  await db.items.each(item => {
+  /* await db.items.each(item => {
 
     const { itemId, name, weight, favourite } = item;
     console.log(item);
@@ -55,21 +94,30 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
     // pick up from here
     state.items.push(writeItem);
     
-  })
+  }) */
 
-  console.log('items written'); */
-  
-  console.log(arg);
-  console.log(state);
-
-  const dbItems = db.items;
-
-  console.log(dbItems);
-  
-  
-  
+  // console.log('items written');
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // END ASYNC THUNKS
 
@@ -173,13 +221,13 @@ export const listStateSlice = createSlice({
       // DB Loading
       .addCase(setDBItems.fulfilled, (state, action) => {
         state.dbLoaded = true;
-        console.log('DB success!!');
+        console.log('***DB success!!***');
       })
       .addCase(setDBItems.pending, (state, action) => {
-        console.log('DB pending...');
+        console.log('***DB pending...***');
       })
       .addCase(setDBItems.rejected, (state, action) => {
-        console.log('DB rejected :(');
+        console.log('***DB rejected :(***');
       }) 
   },
 });
