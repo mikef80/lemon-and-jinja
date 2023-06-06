@@ -63,13 +63,18 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
   try {
     if (dbExists) {
       console.log('db exists');
+      const items: {
+        itemId: number;
+        name: string;
+        weight: number;
+        favourite: boolean;
+      }[] = [];
 
       await db.items.each(item => {
-        console.log(item);
-        
-        const completed = await state.listState.items.push(item);
-        console.log(`completed: ${completed}`);
+        items.push(item);
       });
+
+      return items;
 
     } else {
       console.log("db doesn't exist");
@@ -203,6 +208,9 @@ export const listStateSlice = createSlice({
       // DB Loading
       .addCase(setDBItems.fulfilled, (state, action) => {
         state.dbLoaded = true;
+        console.log(action.payload);
+        state.items = action.payload;
+        
         console.log('***DB success!!***');
       })
       .addCase(setDBItems.pending, (state, action) => {
