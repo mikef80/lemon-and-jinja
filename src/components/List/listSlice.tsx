@@ -35,8 +35,9 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
 })
 
 // Set redux state items from DB Items 
-export const setDBItems = createAsyncThunk('list/setDBItems', async (state: CounterState) => {
-  console.log('set initial DB');
+export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getState }) => {
+  const state = getState();
+  /* console.log('set initial DB');
   const dbExists = await Dexie.exists('myDatabase');
   console.log(dbExists);
   
@@ -56,8 +57,18 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (state: Coun
     
   })
 
-  console.log('items written');
+  console.log('items written'); */
   
+  console.log(arg);
+  console.log(state);
+
+  const dbItems = db.items;
+
+  console.log(dbItems);
+  
+  
+  
+
 })
 
 // END ASYNC THUNKS

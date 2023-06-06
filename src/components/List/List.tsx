@@ -11,7 +11,7 @@ const List = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setDBItems(state));
+    dispatch(setDBItems());
   }, [])
 
   return (
