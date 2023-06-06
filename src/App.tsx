@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "./components/Container/Container";
 import Header from "./components/Header/Header";
 import { Provider, useSelector } from "react-redux";
@@ -12,6 +12,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faWeightScale, faHeart, faCheckCircle, faCirclePlus, faX } from '@fortawesome/free-solid-svg-icons';
 import {  faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 
+import { useAppDispatch } from "./app/hooks";
+import { setDBItems } from "./components/List/listSlice";
+
 library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus, farHeart, faX)
 
 
@@ -19,7 +22,18 @@ library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus, farHeart, faX)
 
 
 
+
+
+
 function App() {
+  const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+    dispatch(setDBItems());
+  }, [])
+
+
   const isOpen = useSelector((state: RootState) => state.hamburgerState.open);
 
   return (

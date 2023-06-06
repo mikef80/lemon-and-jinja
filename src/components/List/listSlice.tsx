@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../db/db";
 import Dexie from "dexie";
+import { log } from "console";
 
 export interface CounterState {
   dbLoaded: boolean,
@@ -61,17 +62,12 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
     if (dbExists) {
       console.log('db exists');
 
-      // await db.items.each(item => console.log(item));
-      await db.items.each(item => state.listState.items.push(item));
-      
-      
-      
-      console.log(state.listState.items);
-      
-      
-
-
-
+      await db.items.each(item => {
+        console.log(item);
+        console.log(state.listState.items);
+        
+        state.listState.items = [...state.listState.items, item];
+      });
 
     } else {
       console.log("db doesn't exist");
@@ -80,23 +76,7 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
     console.log(error);    
   }
   
-  /* await db.items.each(item => {
-
-    const { itemId, name, weight, favourite } = item;
-    console.log(item);
-    const writeItem = {
-      itemId,
-      name,
-      weight,
-      favourite,
-    }
-
-    // pick up from here
-    state.items.push(writeItem);
-    
-  }) */
-
-  // console.log('items written');
+  console.log('items written');
 
 })
 

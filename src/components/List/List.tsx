@@ -10,9 +10,9 @@ const List = () => {
   const state = useAppSelector(state => state.listState);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  /* useEffect(() => {
     dispatch(setDBItems());
-  }, [])
+  }, []) */
 
   return (
     <>

@@ -11,6 +11,7 @@ const List = lazy(() => import("./components/List/List"));
 import Favourites from "./components/Favourites/Favourites";
 import Loading from "./components/Loading/Loading";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
