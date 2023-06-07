@@ -110,7 +110,7 @@ export const listStateSlice = createSlice({
       action: PayloadAction<{
         itemId: number;
         name: string;
-        weight: number;
+        weight?: number;
         favourite: boolean;
       }>
     ) => {
