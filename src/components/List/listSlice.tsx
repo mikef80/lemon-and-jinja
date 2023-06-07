@@ -10,7 +10,7 @@ export interface CounterState {
   items: {
     itemId: number;
     name: string;
-    weight: number;
+    weight?: number;
     favourite: boolean;
   }[];
 }
@@ -21,7 +21,7 @@ export interface CounterState {
 export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPayload: {
   itemId: number;
   name: string;
-  weight: number;
+  weight?: number;
   favourite: boolean;
 }) => {  
   
@@ -42,7 +42,7 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
   const items: {
     itemId: number;
     name: string;
-    weight: number;
+    weight?: number;
     favourite: boolean;
   }[] = [];
 
@@ -88,7 +88,7 @@ export const listStateSlice = createSlice({
       action: PayloadAction<{
         itemId: number;
         name: string;
-        weight: number;
+        weight?: number;
         favourite: boolean;
       }>
     ) => {
