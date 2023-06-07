@@ -19,7 +19,7 @@ const ItemInput = () => {
     const submission = {
       itemId: count,
       name: input,
-      weight?: null,
+      weight: undefined,
       favourite: false
     };
 
