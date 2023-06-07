@@ -210,6 +210,7 @@ export const listStateSlice = createSlice({
         state.dbLoaded = true;
         console.log(action.payload);
         state.items = action.payload;
+        state.itemCount = state.items.length; 
         console.log('***DB success!!***');
       })
       .addCase(setDBItems.pending, (state, action) => {
