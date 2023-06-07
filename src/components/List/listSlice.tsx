@@ -60,22 +60,22 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
   console.log('set initial DB');
   const dbExists = await Dexie.exists('myDatabase');
 
+  const items: {
+    itemId: number;
+    name: string;
+    weight: number;
+    favourite: boolean;
+  }[] = [];
+
   try {
     if (dbExists) {
       console.log('db exists');
-      const items: {
-        itemId: number;
-        name: string;
-        weight: number;
-        favourite: boolean;
-      }[] = [];
 
       await db.items.each(item => {
         items.push(item);
       });
 
-      return items;
-
+      
     } else {
       console.log("db doesn't exist");
     }
@@ -84,6 +84,7 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
   }
   
   console.log('items written');
+  return items;
 
 })
 
@@ -207,9 +208,8 @@ export const listStateSlice = createSlice({
       }) 
       // DB Loading
       .addCase(setDBItems.fulfilled, (state, action) => {
-        state.dbLoaded = true;
-        console.log(action.payload);
         state.items = action.payload;
+        state.dbLoaded = true;
         state.itemCount = state.items.length; 
         console.log('***DB success!!***');
       })
