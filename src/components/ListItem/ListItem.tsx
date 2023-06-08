@@ -7,7 +7,7 @@ const ListItem = (props: {
   key: number;
   itemId: number;
   name: string;
-  weight?: number;
+  weight: number;
   favourite: boolean;
 }) => {
   // const [inputWeight, updateInputWeight] = useState(0);
@@ -30,7 +30,9 @@ const ListItem = (props: {
     const eventID = e.target.id;
 
     if (eventID === 'itemWeightInput') {      
-      // updateInputWeight(e.target.value);
+      console.log(e.target.value);
+      
+
       dispatch(updateItem({ ...selected, weight: Number(e.target.value) }));
       dispatch(updateDBItem({ ...selected, weight: Number(e.target.value) }));
     } else {
@@ -60,7 +62,7 @@ const ListItem = (props: {
               name="numberOfItem"
               type="number"
               className="border-2 w-full"
-              placeholder='0'
+              placeholder='Enter weight...'
             />
           </div>
         </div>
