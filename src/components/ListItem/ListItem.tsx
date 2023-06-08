@@ -27,12 +27,9 @@ const ListItem = (props: {
   };
 
   const updateItemDetails = (e: any) => {      
-    const eventID = e.target.id;
+    const eventID = e.target.id;    
 
     if (eventID === 'itemWeightInput') {      
-      console.log(e.target.value);
-      
-
       dispatch(updateItem({ ...selected, weight: Number(e.target.value) }));
       dispatch(updateDBItem({ ...selected, weight: Number(e.target.value) }));
     } else {
@@ -56,7 +53,7 @@ const ListItem = (props: {
           <div className="flex-grow">
             <input
               id='itemWeightInput'
-              value={weight}
+              value={(weight)}
               step="any"
               onChange={updateItemDetails}
               name="numberOfItem"
