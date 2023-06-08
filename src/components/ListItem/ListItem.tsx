@@ -7,7 +7,7 @@ const ListItem = (props: {
   key: number;
   itemId: number;
   name: string;
-  weight: number;
+  weight?: number;
   favourite: boolean;
 }) => {
   // const [inputWeight, updateInputWeight] = useState(0);
