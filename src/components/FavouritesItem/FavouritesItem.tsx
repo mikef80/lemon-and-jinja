@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { updateItem, deleteItem, updateDBItem } from "../List/listSlice";
 
-const ListItem = (props: {
+const FavouritesItem = (props: {
   key: number;
   itemId: number;
   name: string;
   weight: number;
   favourite: boolean;
 }) => {
-  // const [inputWeight, updateInputWeight] = useState(0);
 
   const { itemId, name, weight, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
@@ -75,13 +74,7 @@ const ListItem = (props: {
         <FontAwesomeIcon onClick={deleteItemHandler} icon="x" size="2xl" />
       </div>
     </li>
-    // <div>
-    //   <p>n: {name}</p>
-    //   <p>w: {weight}</p>
-    //   <p>f: {favourite}</p>
-    //   <p>id: {itemId}</p>
-    // </div>
   );
 };
 
-export default ListItem;
+export default FavouritesItem;
