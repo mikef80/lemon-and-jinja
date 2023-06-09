@@ -22,7 +22,6 @@ const ListItem = (props: {
 
   const deleteItemHandler = (e: any) => {
     const itemId = Number(selected.itemId);
-
     dispatch(deleteItem({ itemId: itemId }));
   };
 
@@ -53,7 +52,7 @@ const ListItem = (props: {
           <div className="flex-grow">
             <input
               id='itemWeightInput'
-              value={(weight)}
+              value={(weight === 0 ? '' : weight)}
               step="any"
               onChange={updateItemDetails}
               name="numberOfItem"
