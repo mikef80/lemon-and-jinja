@@ -6,7 +6,7 @@ An installable React-Redux PWA, this shopping companion app is designed to be in
 <u>To Install</u>
 
 <ol>
-  <li>Visit <a href=''>https://celadon-marzipan-44bc39.netlify.app/</a> using Safari (iPhone).</li>
-  <li>Select the option and click 'Add to Home Screen'.</li>
-  <li>The app is now available as a standalone PWA on your phone.</li>
+  <li>Visit <a href=''>https://celadon-marzipan-44bc39.netlify.app/</a> using Safari (iPhone)</li>
+  <li>Select the option and click 'Add to Home Screen'</li>
+  <li>The app is now available as a standalone PWA on your phone</li>
 </ol>
