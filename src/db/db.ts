@@ -4,7 +4,7 @@ import Dexie, { Table } from 'dexie';
 export interface Item {
   itemId: number;
   name: string;
-  weight?: number;
+  weight: number;
   favourite: boolean;
 }
 

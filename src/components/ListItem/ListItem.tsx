@@ -22,15 +22,13 @@ const ListItem = (props: {
 
   const deleteItemHandler = (e: any) => {
     const itemId = Number(selected.itemId);
-
     dispatch(deleteItem({ itemId: itemId }));
   };
 
   const updateItemDetails = (e: any) => {      
-    const eventID = e.target.id;
+    const eventID = e.target.id;    
 
     if (eventID === 'itemWeightInput') {      
-      // updateInputWeight(e.target.value);
       dispatch(updateItem({ ...selected, weight: Number(e.target.value) }));
       dispatch(updateDBItem({ ...selected, weight: Number(e.target.value) }));
     } else {
@@ -54,13 +52,13 @@ const ListItem = (props: {
           <div className="flex-grow">
             <input
               id='itemWeightInput'
-              value={weight}
+              value={(weight === 0 ? '' : weight)}
               step="any"
               onChange={updateItemDetails}
               name="numberOfItem"
               type="number"
               className="border-2 w-full"
-              placeholder='0'
+              placeholder='Enter weight...'
             />
           </div>
         </div>

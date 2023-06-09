@@ -10,19 +10,18 @@ export interface CounterState {
   items: {
     itemId: number;
     name: string;
-    weight?: number;
+    weight: number;
     favourite: boolean;
   }[];
 }
 
-
-// ASYNCTHUNKS
+// ASYNC THUNKS
 
 // Update DB Item
 export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPayload: {
   itemId: number;
   name: string;
-  weight?: number;
+  weight: number;
   favourite: boolean;
 }) => {  
   
@@ -37,38 +36,30 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
 })
 
 // Set redux state items from DB Items 
-export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getState }) => {
-  const state = getState();
-  
-  console.log('set initial DB');
+export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getState }) => {  
   const dbExists = await Dexie.exists('myDatabase');
 
   const items: {
     itemId: number;
     name: string;
-    weight?: number;
+    weight: number;
     favourite: boolean;
   }[] = [];
 
   try {
     if (dbExists) {
       console.log('db exists');
-
       await db.items.each(item => {
         items.push(item);
       });
-
-      
+      console.log('items written');
     } else {
-      console.log("db doesn't exist");
+      console.log("db doesn't exist - will be created when first item entered");
     }
   } catch (error) {
     console.log(error);    
   }
-  
-  console.log('items written');
   return items;
-
 })
 
 // END ASYNC THUNKS
@@ -97,7 +88,7 @@ export const listStateSlice = createSlice({
       action: PayloadAction<{
         itemId: number;
         name: string;
-        weight?: number;
+        weight: number;
         favourite: boolean;
       }>
     ) => {
@@ -175,13 +166,13 @@ export const listStateSlice = createSlice({
         state.items = action.payload;
         state.dbLoaded = true;
         state.itemCount = state.items.length; 
-        console.log('***DB success!!***');
+        console.log('***setDBItems success!!***');
       })
       .addCase(setDBItems.pending, (state, action) => {
-        console.log('***DB pending...***');
+        console.log('***setDBItems pending...***');
       })
       .addCase(setDBItems.rejected, (state, action) => {
-        console.log('***DB rejected :(***');
+        console.log('***setDBItems rejected :(***');
       }) 
   },
 });
