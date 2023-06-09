@@ -9,13 +9,13 @@ import MenuBar from "./components/MenuBar/MenuBar";
 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faWeightScale, faHeart, faCheckCircle, faCirclePlus, faX } from '@fortawesome/free-solid-svg-icons';
+import { faWeightScale, faHeart, faCheckCircle, faCirclePlus, faX, faPlus } from '@fortawesome/free-solid-svg-icons';
 import {  faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 
 import { useAppDispatch } from "./app/hooks";
 import { setDBItems } from "./components/List/listSlice";
 
-library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus, farHeart, faX)
+library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus, farHeart, faX, faPlus)
 
 function App() {
   const dispatch = useAppDispatch();

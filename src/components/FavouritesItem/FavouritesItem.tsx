@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { updateItem, deleteItem, updateDBItem } from "../List/listSlice";
+import { updateItem, deleteItem, updateDBItem, addToList, incrementCount } from "../List/listSlice";
 
 const FavouritesItem = (props: {
   key: number;
@@ -18,11 +18,12 @@ const FavouritesItem = (props: {
   const selected = useAppSelector(
     (state) => state.listState.items.filter((item) => item.itemId === itemId)[0]
   );
+  const count = useAppSelector((state) => state.listState.itemCount);
 
-  const deleteItemHandler = (e: any) => {
+  /* const deleteItemHandler = (e: any) => {
     const itemId = Number(selected.itemId);
     dispatch(deleteItem({ itemId: itemId }));
-  };
+  }; */
 
   const updateItemDetails = (e: any) => {      
     const eventID = e.target.id;    
@@ -36,6 +37,19 @@ const FavouritesItem = (props: {
     }
   }
 
+  const addtoListHandler = (e: any) => {
+    console.log('add to list');
+    const submission = {
+      itemId: count,
+      name,
+      weight: 0,
+      favourite: false
+    };
+
+    dispatch(addToList(submission));
+    dispatch(incrementCount());
+  }
+
   return (
     <li
       id={itemId.toString()}
@@ -43,12 +57,12 @@ const FavouritesItem = (props: {
       className="flex px-4 pb-4 pt-3 border-b-[1px]"
     >
       <div className="pr-6 flex-grow">
-        <div>{name}</div>
+        <div className="flex-grow text-lg">{name}</div>
         <div className="flex">
-          <div className="pr-2">
+          {/* <div className="pr-2">
             <FontAwesomeIcon icon="weight-scale" size="xl" />
-          </div>
-          <div className="flex-grow">
+          </div> */}
+          {/* <div className="flex-grow">
             <input
               id='itemWeightInput'
               value={(weight === 0 ? '' : weight)}
@@ -59,7 +73,7 @@ const FavouritesItem = (props: {
               className="border-2 w-full"
               placeholder='Enter weight...'
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex justify-center items-center pr-6">
@@ -71,8 +85,11 @@ const FavouritesItem = (props: {
         />
       </div>
       <div className="flex justify-center items-center">
-        <FontAwesomeIcon onClick={deleteItemHandler} icon="x" size="2xl" />
+        <FontAwesomeIcon onClick={addtoListHandler} icon="plus" size="2xl" />
       </div>
+      {/* <div className="flex justify-center items-center">
+        <FontAwesomeIcon onClick={deleteItemHandler} icon="x" size="2xl" />
+      </div> */}
     </li>
   );
 };
