@@ -8,15 +8,23 @@ export interface Item {
   favourite: boolean;
 }
 
+export interface Favourite {
+  itemId: number;
+  name: string;
+  favourite: boolean;
+}
+
 export class MySubClassedDexie extends Dexie {
   // 'items' is added by dexie when declaring the stores()
   // We just tell the typing system this is the case
   items!: Table<Item>; 
+  favourites!: Table<Item>;
 
   constructor() {
     super('myDatabase');
     this.version(1).stores({
-      items: '++itemId, name, weight, favourite' // Primary key and indexed props
+      items: '++itemId, name, weight, favourite', // Primary key and indexed props
+      favourites: '++itemId, name, favourite'
     });
   }
 }

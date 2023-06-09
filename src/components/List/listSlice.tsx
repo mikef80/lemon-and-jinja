@@ -3,16 +3,12 @@ import { db } from "../../db/db";
 import Dexie from "dexie";
 import { log } from "console";
 import { useSelector } from "react-redux";
+import { Item } from "../../db/db";
 
-export interface CounterState {
+export interface ListState {
   dbLoaded: boolean,
   itemCount: number;
-  items: {
-    itemId: number;
-    name: string;
-    weight: number;
-    favourite: boolean;
-  }[];
+  items: Item[];
 }
 
 // ASYNC THUNKS
@@ -39,12 +35,7 @@ export const updateDBItem = createAsyncThunk('list/updateDBItem', async (newDBPa
 export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getState }) => {  
   const dbExists = await Dexie.exists('myDatabase');
 
-  const items: {
-    itemId: number;
-    name: string;
-    weight: number;
-    favourite: boolean;
-  }[] = [];
+  const items: Item[] = [];
 
   try {
     if (dbExists) {
@@ -64,20 +55,12 @@ export const setDBItems = createAsyncThunk('list/setDBItems', async (arg, { getS
 
 // END ASYNC THUNKS
 
-
 // Update initial state to check for exisiting IDB items and populate from there if they exist.
-const initialState: CounterState = {
+const initialState: ListState = {
   dbLoaded: false,
   itemCount: 0,
   items: [],
 };
-
-/* const checkIfExists = async () => {
-  const exists = await Dexie.exists('myDatabase');
-  console.log(exists);
-};
-
-checkIfExists(); */
 
 export const listStateSlice = createSlice({
   name: "list",
@@ -85,12 +68,7 @@ export const listStateSlice = createSlice({
   reducers: {
     addToList: (
       state,
-      action: PayloadAction<{
-        itemId: number;
-        name: string;
-        weight: number;
-        favourite: boolean;
-      }>
+      action: PayloadAction<Item>
     ) => {
       const { payload } = action;
 
@@ -107,12 +85,7 @@ export const listStateSlice = createSlice({
     },
     updateItem: (
       state,
-      action: PayloadAction<{
-        itemId: number;
-        name: string;
-        weight?: number;
-        favourite: boolean;
-      }>
+      action: PayloadAction<Item>
     ) => {
       const { itemId, name, weight, favourite } = action.payload;
       
@@ -124,9 +97,7 @@ export const listStateSlice = createSlice({
         weight: Number(weight),
         favourite
       }
-
       state.items[index] = newPayload;
-
     },
     deleteItem: (
       state,
@@ -143,10 +114,8 @@ export const listStateSlice = createSlice({
         const deleted = db.items.where('itemId').equals(deleteId).delete();
         console.log(deleted);        
       } catch (error) {
-        console.error(error);
-        
+        console.error(error); 
       }
-      
     },
   },
   extraReducers: (builder) => {

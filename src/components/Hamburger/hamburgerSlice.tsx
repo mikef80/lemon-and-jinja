@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface CounterState {
+export interface HamburgerState {
   open: boolean
 }
 
-const initialState: CounterState = {
+const initialState: HamburgerState = {
   open: false,
 }
 

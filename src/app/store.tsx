@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import hamburgerStateReducer from '../components/Hamburger/hamburgerSlice'
 import listStateReducer from '../components/List/listSlice'
+import favouritesStateReducer from '../components/Favourites/favouritesSlice'
 
 export const store = configureStore({
   reducer: {
     hamburgerState: hamburgerStateReducer,
     listState: listStateReducer,
+    favouritesState: favouritesStateReducer
   },
 });
 
