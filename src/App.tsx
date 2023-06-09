@@ -17,14 +17,6 @@ import { setDBItems } from "./components/List/listSlice";
 
 library.add(faWeightScale, faHeart, faCheckCircle, faCirclePlus, farHeart, faX)
 
-
-
-
-
-
-
-
-
 function App() {
   const dispatch = useAppDispatch();
 
