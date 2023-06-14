@@ -26,13 +26,19 @@ export const favouritesStateSlice = createSlice({
     ) => {
       const { payload } = action;
       console.log('adding to list?');
+      console.log('1');
       
       state.favourites.push(payload);
-
+      console.log('2');
+      
       try {
+        console.log('5');
         const result = db.items.add(payload);
+        console.log('6');
       } catch (error) {
+        console.log('3');
         console.error(error);
+        console.log('4');
       }
     },
     /* deleteFromFavourites: (
