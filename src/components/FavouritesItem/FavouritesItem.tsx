@@ -9,11 +9,10 @@ const FavouritesItem = (props: {
   key: number;
   itemId: number;
   name: string;
-  weight: number;
   favourite: boolean;
 }) => {
 
-  const { itemId, name, weight, favourite } = props;
+  const { itemId, name, favourite } = props;
   const displayFavourite = favourite ? "fas" : "far";
 
   const dispatch = useAppDispatch();

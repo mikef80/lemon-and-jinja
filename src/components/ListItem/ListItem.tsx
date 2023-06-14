@@ -2,6 +2,7 @@ import React, { MouseEventHandler, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { updateItem, deleteItem, updateDBItem } from "../List/listSlice";
+import { toggleFavourite } from "../Favourites/favouritesSlice";
 
 const ListItem = (props: {
   key: number;
@@ -33,6 +34,7 @@ const ListItem = (props: {
     } else {
       dispatch(updateItem({ ...selected, favourite: !favourite }));
       dispatch(updateDBItem({ ...selected, favourite: !favourite }));
+      dispatch(toggleFavourite({...selected, favourite: !favourite}));
     }
   }
 

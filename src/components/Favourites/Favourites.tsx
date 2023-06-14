@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 
 const Favourites = () => {
-  const items = useAppSelector((state) => state.listState.items);
+  const items = useAppSelector((state) => state.favouritesState.favourites);
   const dbLoaded = useAppSelector((state) => state.listState.dbLoaded);
   const state = useAppSelector(state => state.listState);
   const dispatch = useAppDispatch();
@@ -16,9 +16,9 @@ const Favourites = () => {
         <ul>
           {items.map(item => {
             if (item.favourite) {
-              const { itemId, name, weight, favourite } = item;
+              const { itemId, name, favourite } = item;
 
-            return <FavouritesItem key={itemId} itemId={itemId} name={name} weight={weight} favourite={favourite} />;
+            return <FavouritesItem key={itemId} itemId={itemId} name={name} favourite={favourite} />;
             }
           })}
         </ul>

@@ -1,19 +1,18 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../db/db";
+import { Favourite, db } from "../../db/db";
 import { useSelector } from "react-redux";
 import { Item } from "../../db/db";
 
 export interface FavouritesState {
-  favourites: {
-    itemId: number;
-    name: string;
-    // weight: number;
-    favourite: boolean;
-  }[];
+  favDBLoaded: boolean,
+  favouriteCount: number;
+  favourites: Favourite[];
 }
 
 // Update initial state to check for exisiting IDB items and populate from there if they exist.
 const initialState: FavouritesState = {
+  favDBLoaded: false,
+  favouriteCount: 0,
   favourites: [],
 };
 
@@ -21,7 +20,7 @@ export const favouritesStateSlice = createSlice({
   name: "favourites",
   initialState,
   reducers: {
-    /* addToActiveList: (
+    toggleFavourite: (
       state,
       action: PayloadAction<Item>
     ) => {
@@ -35,8 +34,8 @@ export const favouritesStateSlice = createSlice({
       } catch (error) {
         console.error(error);
       }
-    }, */
-    deleteFromFavourites: (
+    },
+    /* deleteFromFavourites: (
       state,
       action: PayloadAction<{
         itemId: number;
@@ -55,14 +54,14 @@ export const favouritesStateSlice = createSlice({
         
       }
       
-    },
+    }, */
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  // addToActiveList,
-  deleteFromFavourites
+  toggleFavourite,
+  // deleteFromFavourites
 } = favouritesStateSlice.actions;
 
 export default favouritesStateSlice.reducer;
